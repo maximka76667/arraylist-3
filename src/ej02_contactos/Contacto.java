@@ -43,5 +43,12 @@ public class Contacto {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
+	public void verDatos() {
+		System.out.println("DNI: " + this.dni);
+		System.out.println("Nombre: " + this.nombre);
+		System.out.println("Apellidos: " + this.apellidos);
+		System.out.println("Telefono: " + this.telefono);
+	}
 
 }
