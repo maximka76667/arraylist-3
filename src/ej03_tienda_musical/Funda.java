@@ -1,6 +1,6 @@
 package ej03_tienda_musical;
 
-public class Funda {
+public class Funda extends Accesorio {
 
 //	Un identificador numérico.
 //	Un nombre.
@@ -17,14 +17,12 @@ public class Funda {
 	public Funda(int id, String nombre, double precio, double longitudGuitarraMaxima, double longitudGuitarraMinima,
 			double anchuraGuitarraMaxima, double anchuraGuitarraMinima, double fondoGuitarraMaxima,
 			double fondoGuitarraMinima) {
-		super();
+		super(anchuraGuitarraMaxima, anchuraGuitarraMinima);
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.longitudGuitarraMaxima = longitudGuitarraMaxima;
 		this.longitudGuitarraMinima = longitudGuitarraMinima;
-		this.anchuraGuitarraMaxima = anchuraGuitarraMaxima;
-		this.anchuraGuitarraMinima = anchuraGuitarraMinima;
 		this.fondoGuitarraMaxima = fondoGuitarraMaxima;
 		this.fondoGuitarraMinima = fondoGuitarraMinima;
 	}
@@ -70,19 +68,19 @@ public class Funda {
 	}
 
 	public double getAnchuraGuitarraMaxima() {
-		return anchuraGuitarraMaxima;
+		return super.anchuraGuitarraMaxima;
 	}
 
 	public void setAnchuraGuitarraMaxima(double anchuraGuitarraMaxima) {
-		this.anchuraGuitarraMaxima = anchuraGuitarraMaxima;
+		super.setAnchuraGuitarraMaxima(anchuraGuitarraMaxima);
 	}
 
 	public double getAnchuraGuitarraMinima() {
-		return anchuraGuitarraMinima;
+		return super.anchuraGuitarraMinima;
 	}
 
 	public void setAnchuraGuitarraMinima(double anchuraGuitarraMinima) {
-		this.anchuraGuitarraMinima = anchuraGuitarraMinima;
+		super.setAnchuraGuitarraMinima(anchuraGuitarraMinima);
 	}
 
 	public double getFondoGuitarraMaxima() {
@@ -101,16 +99,25 @@ public class Funda {
 		this.fondoGuitarraMinima = fondoGuitarraMinima;
 	}
 
+	public boolean esCompatible(Guitarra guitarra) {
+		return (guitarra.getAnchura() >= this.getAnchuraGuitarraMinima()
+				&& guitarra.getAnchura() <= this.getAnchuraGuitarraMaxima()
+				&& guitarra.getLongitud() >= this.getLongitudGuitarraMinima()
+				&& guitarra.getLongitud() <= this.getLongitudGuitarraMaxima()
+				&& guitarra.getFondo() >= this.getFondoGuitarraMinima()
+				&& guitarra.getFondo() <= this.getFondoGuitarraMaxima());
+	}
+
 	// "La funda [nombre de la funda] con identificador [identificador] puede usarse
 	// con guitarras de longitud entre [longitud mínima de guitarra permitida] y
 	// [longitud máxima de guitarra permitida] cm, anchura entre [anchura mínima
 	// de guitarra permitida] y [anchura máxima de guitarra permitida] y fondo entre
 	// [fondo mínimo de guitarra permitida] y [fondo máximo de guitarra permitida]
+
 	@Override
 	public String toString() {
-		return "La funda " + nombre + " con identificador " + id + " puede usarse con guitarras de longitud entre " + longitudGuitarraMinima + " y " +
-				longitudGuitarraMaxima + "cm, anchura entre " + anchuraGuitarraMinima +
-				" y " + anchuraGuitarraMaxima + " y fondo entre " +
-				fondoGuitarraMinima + " y " + fondoGuitarraMaxima;
+		return "La funda " + nombre + " con identificador " + id + " puede usarse con guitarras de longitud entre "
+				+ longitudGuitarraMinima + " y " + longitudGuitarraMaxima + "cm, anchura entre " + anchuraGuitarraMinima
+				+ " y " + anchuraGuitarraMaxima + " y fondo entre " + fondoGuitarraMinima + " y " + fondoGuitarraMaxima;
 	}
 }
